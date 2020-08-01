@@ -36,5 +36,18 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private Set<Product> productsOnBasket;
-    
+
+    public boolean addProductOnBasket(Product product){
+        if(product==null)
+            return false;
+        product.getPotentialBuyers().add(this);
+        return productsOnBasket.add(product);
+    }
+
+    public boolean removeProductFromBasket(Product product){
+        if(product==null)
+            return false;
+        product.getPotentialBuyers().remove(this);
+        return productsOnBasket.remove(product);
+    }
 }
