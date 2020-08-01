@@ -50,4 +50,6 @@ public class User {
         product.getPotentialBuyers().remove(this);
         return productsOnBasket.remove(product);
     }
+
+
 }
