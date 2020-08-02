@@ -44,6 +44,7 @@ public class UserServiceImpl implements UserService {
             user.setSurname(newUser.getSurname());
             user.setBalance(newUser.getBalance());
 
+
         } catch (Exception e){
             System.out.println("User with id = "+ id +" doesn't exist");
         }

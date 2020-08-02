@@ -51,5 +51,18 @@ public class User {
         return productsOnBasket.remove(product);
     }
 
+    public boolean addProductOnSale(Product product){
+        if(product==null)
+            return false;
+        product.setSeller(this);
+        return productsOnSale.add(product);
+    }
+
+    public boolean removeProductOnSale(Product product){
+        if(product==null)
+            return false;
+        return productsOnSale.remove(product);
+    }
+
 
 }
