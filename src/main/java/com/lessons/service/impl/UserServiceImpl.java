@@ -43,8 +43,14 @@ public class UserServiceImpl implements UserService {
             user.setName(newUser.getName());
             user.setSurname(newUser.getSurname());
             user.setBalance(newUser.getBalance());
+            user.getProductsOnSale().clear();
+            user.getProductsOnBasket().clear();
 
-
+            if(newUser.getProductsOnBasket() != null)
+                newUser.getProductsOnBasket().forEach(user::addProductOnBasket);
+            if(newUser.getProductsOnSale() != null)
+                newUser.getProductsOnSale().forEach(user::addProductOnSale);
+            return user;
         } catch (Exception e){
             System.out.println("User with id = "+ id +" doesn't exist");
         }

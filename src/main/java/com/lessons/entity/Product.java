@@ -26,7 +26,14 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User seller;
-    
+
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<User> potentialBuyers;
+
+    public boolean addPotentialBuyer(User user){
+        if(user == null)
+            return false;
+        user.addProductOnBasket(this);
+        return potentialBuyers.add(user);
+    }
 }

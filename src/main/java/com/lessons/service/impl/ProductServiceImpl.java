@@ -37,6 +37,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product update(Product newProduct, Integer id) {
+        try{
+            Product product = productRepository.findById(id).orElseThrow(Exception::new);
+            product.setSeller(newProduct.getSeller());
+            product.setName(newProduct.getName());
+            product.setDescription(newProduct.getDescription());
+            product.getPotentialBuyers().clear();
+            
+            if(newProduct.getPotentialBuyers()!=null)
+                newProduct.getPotentialBuyers().forEach(product::addPotentialBuyer);
+        } catch (Exception e){
+            System.out.println("Product with id = " + id + " doesn't exist.");
+        }
         return null;
     }
 
